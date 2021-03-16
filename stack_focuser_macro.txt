@@ -1,0 +1,21 @@
+//Sobel Filter Based Focusing
+//https://imagej.nih.gov/ij/plugins/stack-focuser.html
+//The Stack Focuser plugin uses a Sobel edge filter to calculate “best focus”. Try “3” for the kernel value in the first instance. The result is a "height map" showing the focused images. This plugin only works on 8- or 16-bit images. It can result in a “pixelly” image.
+
+
+
+//./Fiji.app/Contents/MacOS/ImageJ-macosx --headless --console -macro ./RunBatch.txt 'folder=test_macro parameters=a.properties output=./test_output'
+arg = getArgument()
+input_folder = '/Users/kristian/Desktop/DEMO/test_macro'
+n_kernel = 24
+generate_height_map = 'generate'
+rgb_objects = 'r,'
+output_image = '/Users/kristian/Desktop/DEMO/_test.tif'
+
+run("Image Sequence...", "open=&input_folder sort");
+run("Stack Focuser ", "enter=24");
+saveAs("Tiff", output_image);
+
+print("Done.")
+eval("script", "System.exit(0);");
+
